@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HexaHive - Landing Hub</title>
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .dashboard-container{
+            background-color: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(10px);
+            padding: 40px;
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            width: 600px;
+            box-sizing: border-box;
+            text-align: center;
+            box-shadow: 0, 10px, 30px rgba(0, 0, 0, 0.4);
+      }
+
+      .welcome-badge{
+        font-size: 48px;
+        margin-bottom: 12px;
+      }
+
+      h2{
+        color:#ffffff;
+        font-size: 28px;
+       margin: 0 0 10px 0;    
+    }
+
+    .hub-desc{
+   color: #94a3b8;
+   font-size: 15px;
+   margin: 0 0 35px 0;
+   line-height: 1.6;
+    }
+
+    .action-grid{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+        margin-bottom: 30px;
+    }
+
+    .portal-card{
+        background-color: #0f172a;
+        border: 1px solid #334155;
+        padding: 20px;
+        border-radius: 16px;
+        color: #ffffff;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 15px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        transition: transform 0.2s, border-color 0.2s;
+    }
+
+    .portal-card:hover{
+        transform: translate(-4px);
+        border-color: #22d3ee;
+    }
+
+    .card-icon{
+        font-size: 24px;
+    }
+
+    .logout-link{
+        display: inline-block;
+        color: #64748b;
+        text-decoration: none;
+        font-size: 14px;
+        transition: color 0.2s;
+    }
+
+    .logout-link:hover{
+        color: #ef4444;
+    }
+
+    </style>
+</head>
+<body>
+
+    <div class="dashboard-container">
+        <div class="welcome-badge">🐝</div>
+        <h2>HexaHIve Industrial Hub</h2>
+        <p class="hub-desc">Welcome to the central command hub. Select one of the configgured operations modules below to manage your system files, tracking credentials, and roles.</p>
+
+        <div class="action-grid">
+            <a href="choose-role.html" class="portal-card">
+             <span class="card-icon">👥</span>
+             choose Account Role 
+            </a>
+            <a href="new-application.html" class="portal-card">
+                <span class="card-icon">📝</span>
+                New Application
+            </a>
+
+            <a href="track-status.html" class="portal-card">
+                <span class="card-icon">📊</span>
+                Track Live Status
+            </a>
+
+            <a href="documents.html" class="portal-card">
+                <span class="card-icon">📁</span>
+                Document Vault
+            </a>
+        </div>
+        <a href="login.html" class="logout-link"><-- Return to Login Portal</a>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
