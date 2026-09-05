@@ -17,13 +17,7 @@ document.querySelector("button").onclick = () =>{
         // If it's an admin/authority email, bypass the hub and go straight to your dashboard!
         alert("Welcome Back, Authority Officer.");
         window.location.href = "authority-dashboard.html";
-    } else {
-        // Otherwise, send standard applicants to your central landing hub menu
-        alert("Login successful!");
-        window.location.href = "landing.html";
-    }
-
-     
+    } 
 window.location.href = "landing.html";
    
 };
