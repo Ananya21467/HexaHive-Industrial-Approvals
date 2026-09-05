@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Fill Application Form | HexaHive</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f4f7fb;
+            color: #1e293b;
+        }
+
+        /* NAVBAR */
+        .navbar {
+            background: #0f3d5e;
+            color: white;
+            padding: 18px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .back-btn {
+            background: white;
+            color: #0f3d5e;
+            padding: 9px 18px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        /* CONTAINER */
+        .container {
+            width: 90%;
+            max-width: 1050px;
+            margin: 35px auto;
+        }
+
+        .page-title {
+            color: #0f3d5e;
+            font-size: 30px;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            color: #64748b;
+            margin-bottom: 25px;
+        }
+
+        /* PROGRESS */
+        .progress-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+        }
+
+        .progress {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 18px;
+        }
+
+        .step {
+            text-align: center;
+            flex: 1;
+        }
+
+        .circle {
+            width: 36px;
+            height: 36px;
+            background: #0f3d5e;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: auto;
+            font-weight: bold;
+        }
+
+        .step p {
+            font-size: 13px;
+            margin-top: 8px;
+        }
+
+        /* FORM CARD */
+        .form-card {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+        }
+
+        .form-card h2 {
+            color: #0f3d5e;
+            border-bottom: 2px solid #e5e7eb;
+            padding-bottom: 12px;
+            margin-bottom: 22px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .full {
+            grid-column: 1 / 3;
+        }
+
+        label {
+            font-weight: bold;
+            margin-bottom: 7px;
+        }
+
+        .required {
+            color: red;
+        }
+
+        input,
+        select,
+        textarea {
+            padding: 12px;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            font-size: 15px;
+            outline: none;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            border-color: #0f3d5e;
+        }
+
+        textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        /* CHECKBOX */
+        .checkbox-group {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: #f8fafc;
+            padding: 12px;
+            border-radius: 6px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .checkbox-item input {
+            width: auto;
+        }
+
+        /* SMART RECOMMENDATION */
+        .smart-box {
+            background: #eef6ff;
+            border-left: 5px solid #0f3d5e;
+            padding: 18px;
+            margin-top: 20px;
+            line-height: 1.6;
+        }
+
+        .smart-box h3 {
+            color: #0f3d5e;
+            margin-bottom: 8px;
+        }
+
+        /* DECLARATION */
+        .declaration {
+            background: #f8fafc;
+            padding: 18px;
+            border-radius: 7px;
+            border: 1px solid #e2e8f0;
+            line-height: 1.6;
+        }
+
+        .declaration label {
+            display: flex;
+            gap: 10px;
+            font-weight: normal;
+        }
+
+        .declaration input {
+            width: auto;
+        }
+
+        /* BUTTONS */
+        .buttons {
+            display: flex;
+            justify-content: space-between;
+            margin: 25px 0 40px;
+        }
+
+        .btn {
+            border: none;
+            padding: 13px 25px;
+            border-radius: 6px;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .previous {
+            background: #e2e8f0;
+            color: #334155;
+        }
+
+        .continue {
+            background: #0f3d5e;
+            color: white;
+        }
+
+        .continue:hover {
+            background: #092f48;
+        }
+
+        /* MOBILE */
+        @media(max-width: 700px) {
+
+            .navbar {
+                padding: 15px 20px;
+            }
+
+            .container {
+                width: 95%;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .full {
+                grid-column: 1;
+            }
+
+            .checkbox-group {
+                grid-template-columns: 1fr;
+            }
+
+            .progress {
+                gap: 5px;
+            }
+
+            .step p {
+                font-size: 11px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <div class="navbar">
+
+        <div class="logo">
+            HexaHive
+        </div>
+
+        <a href="applicant-dashboard.html" class="back-btn">
+            ← Dashboard
+        </a>
+
+    </div>
+
+
+    <div class="container">
+
+        <h1 class="page-title">
+            Industrial Approval Application
+        </h1>
+
+        <p class="subtitle">
+            Complete the following information to process your industrial approvals and compliance requirements.
+        </p>
+
+
+        <!-- PROGRESS -->
+        <div class="progress-card">
+
+            <strong>Application Progress</strong>
+
+            <div class="progress">
+
+                <div class="step">
+                    <div class="circle">✓</div>
+                    <p>Project Details</p>
+                </div>
+
+                <div class="step">
+                    <div class="circle">2</div>
+                    <p>Application Form</p>
+                </div>
+
+                <div class="step">
+                    <div class="circle">3</div>
+                    <p>Documents</p>
+                </div>
+
+                <div class="step">
+                    <div class="circle">4</div>
+                    <p>Submit</p>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- SECTION 1 -->
+        <div class="form-card">
+
+            <h2>1. Industrial Project Details</h2>
+
+            <div class="form-grid">
+
+                <div class="form-group">
+
+                    <label>
+                        Type of Industry <span class="required">*</span>
+                    </label>
+
+                    <select id="industry">
+
+                        <option value="">
+                            Select industry
+                        </option>
+
+                        <option>
+                            Manufacturing
+                        </option>
+
+                        <option>
+                            Food Processing
+                        </option>
+
+                        <option>
+                            Textile
+                        </option>
+
+                        <option>
+                            Pharmaceutical
+                        </option>
+
+                        <option>
+                            Chemical
+                        </option>
+
+                        <option>
+                            Automobile
+                        </option>
+
+                        <option>
+                            Renewable Energy
+                        </option>
+
+                        <option>
+                            IT / ITES
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Project Status <span class="required">*</span>
+                    </label>
+
+                    <select>
+
+                        <option value="">
+                            Select status
+                        </option>
+
+                        <option>
+                            New Project
+                        </option>
+
+                        <option>
+                            Expansion
+                        </option>
+
+                        <option>
+                            Modernization
+                        </option>
+
+                        <option>
+                            Existing Unit
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Total Land Area
+                    </label>
+
+                    <input
+                        type="text"
+                        placeholder="e.g. 5 acres">
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Proposed Employment
+                    </label>
+
+                    <input
+                        type="number"
+                        placeholder="Number of employees">
+
+                </div>
+
+
+                <div class="form-group full">
+
+                    <label>
+                        Manufacturing / Business Activity
+                        <span class="required">*</span>
+                    </label>
+
+                    <textarea
+                        placeholder="Describe the main activities of your industrial unit">
+                    </textarea>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- SECTION 2 -->
+        <div class="form-card">
+
+            <h2>2. Environmental & Compliance Information</h2>
+
+            <div class="form-grid">
+
+                <div class="form-group">
+
+                    <label>
+                        Expected Water Consumption
+                    </label>
+
+                    <input
+                        type="text"
+                        placeholder="e.g. 20,000 litres/day">
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Expected Power Requirement
+                    </label>
+
+                    <input
+                        type="text"
+                        placeholder="e.g. 500 KW">
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Waste Generation
+                    </label>
+
+                    <select>
+
+                        <option value="">
+                            Select option
+                        </option>
+
+                        <option>
+                            No Significant Waste
+                        </option>
+
+                        <option>
+                            Low
+                        </option>
+
+                        <option>
+                            Medium
+                        </option>
+
+                        <option>
+                            High
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Pollution Potential
+                    </label>
+
+                    <select>
+
+                        <option value="">
+                            Select category
+                        </option>
+
+                        <option>
+                            Low
+                        </option>
+
+                        <option>
+                            Medium
+                        </option>
+
+                        <option>
+                            High
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group full">
+
+                    <label>
+                        Environmental Protection Measures
+                    </label>
+
+                    <textarea
+                        placeholder="Describe waste treatment, pollution control, water conservation or other measures">
+                    </textarea>
+
+                </div>
+
+            </div>
+
+
+            <!-- SMART BOX -->
+
+            <div class="smart-box">
+
+                <h3>
+                    🤖 HexaHive Smart Compliance Assistance
+                </h3>
+
+                <p>
+                    Based on the information provided, the system can
+                    identify applicable approvals, authorities,
+                    compliance requirements and required documents.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- SECTION 3 -->
+        <div class="form-card">
+
+            <h2>3. Required Approvals</h2>
+
+            <p style="margin-bottom: 15px;">
+                Select the approvals or clearances required for your project.
+            </p>
+
+
+            <div class="checkbox-group">
+
+                <div class="checkbox-item">
+
+                    <input type="checkbox" id="environment">
+
+                    <label for="environment">
+                        Environmental Clearance
+                    </label>
+
+                </div>
+
+
+                <div class="checkbox-item">
+
+                    <input type="checkbox" id="pollution">
+
+                    <label for="pollution">
+                        Pollution Control Board Consent
+                    </label>
+
+                </div>
+
+
+                <div class="checkbox-item">
+
+                    <input type="checkbox" id="factory">
+
+                    <label for="factory">
+                        Factory License
+                    </label>
+
+                </div>
+
+
+                <div class="checkbox-item">
+
+                    <input type="checkbox" id="fire">
+
+                    <label for="fire">
+                        Fire Safety NOC
+                    </label>
+
+                </div>
+
+
+                <div class="checkbox-item">
+
+                    <input type="checkbox" id="building">
+
+                    <label for="building">
+                        Building Plan Approval
+                    </label>
+
+                </div>
+
+
+                <div class="checkbox-item">
+
+                    <input type="checkbox" id="electricity">
+
+                    <label for="electricity">
+                        Electricity Connection
+                    </label>
+
+                </div>
+
+
+                <div class="checkbox-item">
+
+                    <input type="checkbox" id="water">
+
+                    <label for="water">
+                        Water Connection
+                    </label>
+
+                </div>
+
+
+                <div class="checkbox-item">
+
+                    <input type="checkbox" id="labour">
+
+                    <label for="labour">
+                        Labour Registration
+                    </label>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- SECTION 4 -->
+        <div class="form-card">
+
+            <h2>4. Government Support & Incentives</h2>
+
+            <div class="form-grid">
+
+                <div class="form-group full">
+
+                    <label>
+                        Are you interested in government schemes or incentives?
+                    </label>
+
+                    <select id="support">
+
+                        <option value="">
+                            Select option
+                        </option>
+
+                        <option>
+                            Yes
+                        </option>
+
+                        <option>
+                            No
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group full">
+
+                    <label>
+                        Type of Support Required
+                    </label>
+
+                    <textarea
+                        placeholder="Mention subsidy, financial assistance, tax benefits, infrastructure support, etc.">
+                    </textarea>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- SECTION 5 -->
+        <div class="form-card">
+
+            <h2>5. Applicant Declaration</h2>
+
+            <div class="declaration">
+
+                <label>
+
+                    <input type="checkbox" id="declaration">
+
+                    <span>
+                        I hereby declare that the information provided
+                        in this application is true and correct to the
+                        best of my knowledge. I understand that the
+                        information will be used for processing
+                        industrial approvals and compliance requirements.
+                    </span>
+
+                </label>
+
+            </div>
+
+        </div>
+
+
+        <!-- BUTTONS -->
+
+        <div class="buttons">
+
+            <button
+                class="btn previous"
+                onclick="goBack()">
+
+                ← Previous
+
+            </button>
+
+
+            <button
+                class="btn continue"
+                onclick="continueToDocuments()">
+
+                Save & Continue →
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <script>
+
+        function goBack() {
+
+            window.location.href = "new-application.html";
+
+        }
+
+
+        function continueToDocuments() {
+
+            const industry =
+                document.getElementById("industry").value;
+
+            const declaration =
+                document.getElementById("declaration").checked;
+
+
+            if (industry === "") {
+
+                alert("Please select your industry type.");
+
+                return;
+
+            }
+
+
+            if (!declaration) {
+
+                alert("Please accept the applicant declaration.");
+
+                return;
+
+            }
+
+
+            alert(
+                "Application details saved successfully! Proceeding to document upload."
+            );
+
+
+            window.location.href = "documents.html";
+
+        }
+
+    </script>
+
+</body>
+</html>
