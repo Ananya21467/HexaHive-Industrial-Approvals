@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HexaHive - Select Role</title>
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+
+        body{
+            margin: 0%;
+            padding: 0%;
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #f1f5f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            width: 100vw;
+        }
+        .role-container{
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 20px;
+            border: 1px solid #e2e8f0;
+            width: 600px;
+            box-sizing: border-box;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+        }
+
+        h2{
+            color: #0f172a;
+            font-size: 26px;
+            margin: 0 0 8px 0;
+        }
+
+        .instruction{
+            color: #64748b;
+            font-size: 14px;
+            margin: 0 0 30px 0;
+
+        }
+        .role-options{
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-bottom: 25px;
+        }
+
+        .role-button{
+            background-color: #ffffff;
+            border: 1px solid #cbd5e1;
+            padding: 20px;
+            border-radius: 14px;
+            color: #334155;
+            text-decoration: none;
+            display: flex;
+            gap: 15px;
+            transition: all 0.2s;
+            cursor: pointer;
+            text-align: left;
+        }
+
+        .role-button:hover{
+            transform: translateY(-2px);
+            border-color: #0c1e5b;
+            background-color: rgba(12, 30, 91, 0.02);
+            box-shadow: 04px 12px rgba(12, 30, 91, 0.05);
+        }
+
+        .role-icon{
+            font-size: 26px;
+            background-color: #f8fafc;
+            border: 1px solid 3e2e8f0;
+            padding: 10px;
+           border-radius: 12px;
+           display: flex;
+           align-items: center;
+           justify-content: center;
+        }
+
+        .role-info{
+            display: flex;
+            flex-direction: column;
+        }
+
+        .role-title{
+            font-weight: bold;
+            font-size: 16px;
+            color: #0f172a;
+        }
+        .role-desc{
+            font-size: 13px ;
+            color: #64748b;
+            margin-top: 3px;
+            line-height: 1.4;
+            
+        }
+        .back-link{
+            display: inline-block;
+            color: #94a3b8;
+            text-align: none;
+            font-size: 14px;
+            font-weight: bold;
+            transition: color 0.2s;
+        }
+
+        .back-link:hover{
+            color: #0c1e5b;
+        }
+
+         
+    </style>
+</head>
+<body>
+    <div class="role-container">
+        <h2>Identify Your Role</h2>
+        <p class="instructions">select your access tier to redirect into the designated operational interface. </p>
+
+        <div class="role-options">
+            <a href="applicant-dashboard.html" class="role-button">
+                <div class="role-icon">Applicant Account role card Icon👤</div>
+                <div class="role-info">
+                    <span class="role-title">applicant Portal</span>
+                    <span class="role-desc">Submit files, fill out forms, and monitor live application logs.</span>
+                </div>
+            </a>
+
+            <a href="authority-dashboard.html" class="role-button">
+                <div class="role-icon">Approver Profile Card icon🛡️</div>
+                <div class="role-info">
+                    <span class="role-title">Approving Authority</span>
+                    <span class="role-desc">Review submitted credentials, audit documents, and issue status appovals.</span>
+                </div>
+            </a>
+        </div>
+        <a href="landing.html" class="back-link"><-- Back to Hub ovreview</a>
+    </div>
+    
+</body>
+</html>
