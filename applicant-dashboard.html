@@ -1,0 +1,1122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>HexaHive | Applicant Dashboard</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            background: #f4f7fb;
+            color: #1f2937;
+        }
+
+        /* ================= SIDEBAR ================= */
+
+        .dashboard {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        .sidebar {
+            width: 245px;
+            background: #123b70;
+            color: white;
+            padding: 25px 15px;
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 8px;
+            font-size: 26px;
+            font-weight: bold;
+        }
+
+        .portal-name {
+            text-align: center;
+            font-size: 12px;
+            color: #dbeafe;
+            margin-bottom: 35px;
+        }
+
+        .sidebar a {
+            display: block;
+            text-decoration: none;
+            color: white;
+            padding: 13px 15px;
+            margin-bottom: 7px;
+            border-radius: 8px;
+            transition: 0.2s;
+        }
+
+        .sidebar a:hover,
+        .sidebar a.active {
+            background: #2563eb;
+        }
+
+        .logout {
+            position: absolute;
+            bottom: 25px;
+            left: 15px;
+            right: 15px;
+            background: #1e4b80;
+        }
+
+        /* ================= MAIN ================= */
+
+        .main {
+            margin-left: 245px;
+            width: calc(100% - 245px);
+            padding: 28px;
+        }
+
+        /* ================= TOPBAR ================= */
+
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .topbar h1 {
+            font-size: 27px;
+            color: #172554;
+        }
+
+        .topbar p {
+            color: #64748b;
+            margin-top: 5px;
+        }
+
+        .profile {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: white;
+            padding: 10px 16px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+        }
+
+        .profile-icon {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background: #dbeafe;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* ================= WELCOME ================= */
+
+        .welcome {
+            background: linear-gradient(135deg, #123b70, #2563eb);
+            color: white;
+            padding: 28px;
+            border-radius: 15px;
+            margin-bottom: 25px;
+        }
+
+        .welcome h2 {
+            margin-bottom: 8px;
+            font-size: 24px;
+        }
+
+        .welcome p {
+            color: #e0ecff;
+        }
+
+        .new-btn {
+            margin-top: 18px;
+            background: white;
+            color: #1d4ed8;
+            border: none;
+            padding: 11px 20px;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .new-btn:hover {
+            background: #eff6ff;
+        }
+
+        /* ================= STAT CARDS ================= */
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .card {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+            border-left: 4px solid #2563eb;
+        }
+
+        .card h3 {
+            font-size: 13px;
+            color: #64748b;
+            margin-bottom: 10px;
+        }
+
+        .card-number {
+            font-size: 27px;
+            font-weight: bold;
+            color: #172554;
+        }
+
+        .card-info {
+            font-size: 12px;
+            color: #64748b;
+            margin-top: 5px;
+        }
+
+        /* ================= TWO COLUMN ================= */
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+
+        .section {
+            background: white;
+            padding: 23px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+        }
+
+        .section h2 {
+            color: #172554;
+            font-size: 19px;
+            margin-bottom: 18px;
+        }
+
+        /* ================= APPLICATION ================= */
+
+        .application-details {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .detail-box {
+            background: #f8fafc;
+            padding: 13px;
+            border-radius: 8px;
+        }
+
+        .detail-box small {
+            color: #64748b;
+        }
+
+        .detail-box strong {
+            display: block;
+            margin-top: 5px;
+        }
+
+        .status {
+            color: #d97706;
+        }
+
+        /* ================= PROGRESS ================= */
+
+        .progress {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            margin-top: 20px;
+        }
+
+        .progress::before {
+            content: "";
+            position: absolute;
+            top: 15px;
+            left: 8%;
+            right: 8%;
+            height: 3px;
+            background: #dbeafe;
+            z-index: 0;
+        }
+
+        .step {
+            text-align: center;
+            width: 20%;
+            font-size: 11px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .circle {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: #cbd5e1;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: auto auto 8px;
+        }
+
+        .step.completed .circle,
+        .step.current .circle {
+            background: #2563eb;
+        }
+
+        .step.current {
+            font-weight: bold;
+            color: #1d4ed8;
+        }
+
+        /* ================= COMPLIANCE ================= */
+
+        .compliance-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 13px 0;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .compliance-item:last-child {
+            border-bottom: none;
+        }
+
+        .compliance-name {
+            font-size: 14px;
+        }
+
+        .compliance-status {
+            font-size: 11px;
+            padding: 5px 9px;
+            border-radius: 15px;
+        }
+
+        .completed-status {
+            background: #dcfce7;
+            color: #15803d;
+        }
+
+        .pending-status {
+            background: #fef3c7;
+            color: #b45309;
+        }
+
+        /* ================= SUPPORT SERVICES ================= */
+
+        .support-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+
+        .support-card {
+            border: 1px solid #e2e8f0;
+            padding: 18px;
+            border-radius: 10px;
+            transition: 0.2s;
+        }
+
+        .support-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+
+        .support-icon {
+            font-size: 25px;
+            margin-bottom: 10px;
+        }
+
+        .support-card h3 {
+            font-size: 15px;
+            margin-bottom: 6px;
+        }
+
+        .support-card p {
+            font-size: 12px;
+            color: #64748b;
+            margin-bottom: 12px;
+        }
+
+        .support-card button {
+            border: none;
+            background: #eff6ff;
+            color: #1d4ed8;
+            padding: 7px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        /* ================= RECENT APPLICATIONS ================= */
+
+        .table-container {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            padding: 13px;
+            text-align: left;
+            border-bottom: 1px solid #e5e7eb;
+            font-size: 13px;
+        }
+
+        th {
+            background: #f8fafc;
+            color: #475569;
+        }
+
+        .badge {
+            padding: 5px 9px;
+            border-radius: 15px;
+            font-size: 11px;
+            background: #dbeafe;
+            color: #1d4ed8;
+        }
+
+        .view-btn {
+            border: none;
+            background: #2563eb;
+            color: white;
+            padding: 7px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        /* ================= NOTIFICATIONS ================= */
+
+        .notification {
+            padding: 12px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .notification:last-child {
+            border-bottom: none;
+        }
+
+        .notification strong {
+            font-size: 13px;
+        }
+
+        .notification p {
+            color: #64748b;
+            font-size: 12px;
+            margin-top: 4px;
+        }
+
+        /* ================= RESPONSIVE ================= */
+
+        @media (max-width: 1100px) {
+
+            .cards {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .two-column {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+        @media (max-width: 750px) {
+
+            .sidebar {
+                position: relative;
+                width: 100%;
+                min-height: auto;
+            }
+
+            .logout {
+                position: relative;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                margin-top: 20px;
+            }
+
+            .dashboard {
+                flex-direction: column;
+            }
+
+            .main {
+                margin-left: 0;
+                width: 100%;
+                padding: 15px;
+            }
+
+            .cards {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .application-details {
+                grid-template-columns: 1fr;
+            }
+
+            .support-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .topbar {
+                align-items: flex-start;
+                gap: 15px;
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 500px) {
+
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+            .progress {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .progress::before {
+                display: none;
+            }
+
+            .step {
+                width: 100%;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div class="dashboard">
+
+    <!-- ================= SIDEBAR ================= -->
+
+    <aside class="sidebar">
+
+        <div class="logo">🐝 HexaHive</div>
+
+        <div class="portal-name">
+            Industrial Approval Portal
+        </div>
+
+        <a href="applicant-dashboard.html" class="active">
+            🏠 Dashboard
+        </a>
+
+        <a href="new-application.html">
+            📝 New Application
+        </a>
+
+        <a href="#">
+            📂 My Applications
+        </a>
+
+        <a href="documents.html">
+            📄 Documents
+        </a>
+
+        <a href="track-status.html">
+            📊 Track Approval
+        </a>
+
+        <a href="#">
+            📋 Compliance
+        </a>
+
+        <a href="#">
+            🏛️ Government Support
+        </a>
+
+        <a href="#">
+            💬 Help & Support
+        </a>
+
+        <a href="login.html" class="logout">
+            🚪 Logout
+        </a>
+
+    </aside>
+
+
+    <!-- ================= MAIN ================= -->
+
+    <main class="main">
+
+        <!-- TOP BAR -->
+
+        <div class="topbar">
+
+            <div>
+                <h1>Applicant Dashboard</h1>
+                <p>Industrial Approval & Compliance Management</p>
+            </div>
+
+            <div class="profile">
+
+                <div class="profile-icon">
+                    👤
+                </div>
+
+                <div>
+                    <strong>Applicant</strong>
+                    <br>
+                    <small>Industry Representative</small>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ================= WELCOME ================= -->
+
+        <section class="welcome">
+
+            <h2>Welcome back! 👋</h2>
+
+            <p>
+                Manage your industrial approvals, compliance requirements
+                and government support services from one place.
+            </p>
+
+            <button
+                class="new-btn"
+                onclick="window.location.href='new-application.html'">
+
+                + Start New Approval
+
+            </button>
+
+        </section>
+
+
+        <!-- ================= STATISTICS ================= -->
+
+        <section class="cards">
+
+            <div class="card">
+
+                <h3>Total Applications</h3>
+
+                <div class="card-number">
+                    12
+                </div>
+
+                <div class="card-info">
+                    All approval applications
+                </div>
+
+            </div>
+
+
+            <div class="card">
+
+                <h3>Draft Applications</h3>
+
+                <div class="card-number">
+                    2
+                </div>
+
+                <div class="card-info">
+                    Yet to be submitted
+                </div>
+
+            </div>
+
+
+            <div class="card">
+
+                <h3>Under Review</h3>
+
+                <div class="card-number">
+                    4
+                </div>
+
+                <div class="card-info">
+                    Awaiting department review
+                </div>
+
+            </div>
+
+
+            <div class="card">
+
+                <h3>Approved</h3>
+
+                <div class="card-number">
+                    5
+                </div>
+
+                <div class="card-info">
+                    Successfully approved
+                </div>
+
+            </div>
+
+
+            <div class="card">
+
+                <h3>Action Required</h3>
+
+                <div class="card-number">
+                    1
+                </div>
+
+                <div class="card-info">
+                    Needs applicant attention
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= APPLICATION + COMPLIANCE ================= -->
+
+        <div class="two-column">
+
+
+            <!-- LATEST APPROVAL -->
+
+            <section class="section">
+
+                <h2>Latest Approval Application</h2>
+
+                <div class="application-details">
+
+                    <div class="detail-box">
+
+                        <small>Application ID</small>
+
+                        <strong>HEXA-2026-00124</strong>
+
+                    </div>
+
+                    <div class="detail-box">
+
+                        <small>Project</small>
+
+                        <strong>Green Manufacturing Unit</strong>
+
+                    </div>
+
+                    <div class="detail-box">
+
+                        <small>Current Status</small>
+
+                        <strong class="status">
+                            Under Review
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <h3 style="font-size:15px;">
+                    Approval Progress
+                </h3>
+
+
+                <div class="progress">
+
+                    <div class="step completed">
+
+                        <div class="circle">✓</div>
+
+                        Application
+
+                    </div>
+
+
+                    <div class="step completed">
+
+                        <div class="circle">✓</div>
+
+                        Submitted
+
+                    </div>
+
+
+                    <div class="step completed">
+
+                        <div class="circle">✓</div>
+
+                        Documents
+
+                    </div>
+
+
+                    <div class="step current">
+
+                        <div class="circle">4</div>
+
+                        Department Review
+
+                    </div>
+
+
+                    <div class="step">
+
+                        <div class="circle">5</div>
+
+                        Approval
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- COMPLIANCE -->
+
+            <section class="section">
+
+                <h2>Compliance Overview</h2>
+
+
+                <div class="compliance-item">
+
+                    <div class="compliance-name">
+                        Land Documents
+                    </div>
+
+                    <span class="compliance-status completed-status">
+                        Completed
+                    </span>
+
+                </div>
+
+
+                <div class="compliance-item">
+
+                    <div class="compliance-name">
+                        Project Report
+                    </div>
+
+                    <span class="compliance-status completed-status">
+                        Completed
+                    </span>
+
+                </div>
+
+
+                <div class="compliance-item">
+
+                    <div class="compliance-name">
+                        Environmental Compliance
+                    </div>
+
+                    <span class="compliance-status pending-status">
+                        Action Required
+                    </span>
+
+                </div>
+
+
+                <div class="compliance-item">
+
+                    <div class="compliance-name">
+                        Safety Compliance
+                    </div>
+
+                    <span class="compliance-status completed-status">
+                        Completed
+                    </span>
+
+                </div>
+
+            </section>
+
+        </div>
+
+
+        <!-- ================= GOVERNMENT SUPPORT ================= -->
+
+        <section class="section" style="margin-bottom:25px;">
+
+            <h2>Government Support Services</h2>
+
+            <div class="support-grid">
+
+
+                <div class="support-card">
+
+                    <div class="support-icon">
+                        💰
+                    </div>
+
+                    <h3>Financial Support</h3>
+
+                    <p>
+                        Explore eligible financial assistance,
+                        incentives and support programs.
+                    </p>
+
+                    <button onclick="alert('Government financial support services')">
+                        Explore
+                    </button>
+
+                </div>
+
+
+                <div class="support-card">
+
+                    <div class="support-icon">
+                        🏭
+                    </div>
+
+                    <h3>Industrial Schemes</h3>
+
+                    <p>
+                        Find government schemes relevant
+                        to your industrial project.
+                    </p>
+
+                    <button onclick="alert('Industrial schemes')">
+                        View Schemes
+                    </button>
+
+                </div>
+
+
+                <div class="support-card">
+
+                    <div class="support-icon">
+                        📋
+                    </div>
+
+                    <h3>Compliance Assistance</h3>
+
+                    <p>
+                        Access guidance for approvals,
+                        licenses and compliance requirements.
+                    </p>
+
+                    <button onclick="alert('Compliance assistance')">
+                        Get Assistance
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= RECENT APPLICATIONS ================= -->
+
+        <section class="section" style="margin-bottom:25px;">
+
+            <h2>Recent Approval Applications</h2>
+
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>Application ID</th>
+
+                            <th>Project</th>
+
+                            <th>Approval Type</th>
+
+                            <th>Submitted</th>
+
+                            <th>Status</th>
+
+                            <th>Action</th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody>
+
+                        <tr>
+
+                            <td>HEXA-00124</td>
+
+                            <td>Green Manufacturing Unit</td>
+
+                            <td>Industrial Approval</td>
+
+                            <td>02 Sep 2026</td>
+
+                            <td>
+                                <span class="badge">
+                                    Under Review
+                                </span>
+                            </td>
+
+                            <td>
+                                <button
+                                    class="view-btn"
+                                    onclick="window.location.href='track-status.html'">
+
+                                    Track
+
+                                </button>
+                            </td>
+
+                        </tr>
+
+
+                        <tr>
+
+                            <td>HEXA-00121</td>
+
+                            <td>Solar Energy Plant</td>
+
+                            <td>Industrial Approval</td>
+
+                            <td>28 Aug 2026</td>
+
+                            <td>
+                                <span
+                                    class="badge"
+                                    style="background:#dcfce7;color:#15803d;">
+
+                                    Approved
+
+                                </span>
+                            </td>
+
+                            <td>
+
+                                <button class="view-btn">
+                                    View
+                                </button>
+
+                            </td>
+
+                        </tr>
+
+
+                        <tr>
+
+                            <td>HEXA-00118</td>
+
+                            <td>Food Processing Unit</td>
+
+                            <td>License Approval</td>
+
+                            <td>25 Aug 2026</td>
+
+                            <td>
+
+                                <span
+                                    class="badge"
+                                    style="background:#fef3c7;color:#b45309;">
+
+                                    Action Required
+
+                                </span>
+
+                            </td>
+
+                            <td>
+
+                                <button class="view-btn">
+                                    View
+                                </button>
+
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= NOTIFICATIONS ================= -->
+
+        <section class="section">
+
+            <h2>Recent Notifications</h2>
+
+
+            <div class="notification">
+
+                <strong>
+                    📄 Document verification completed
+                </strong>
+
+                <p>
+                    Documents for HEXA-2026-00124 have been successfully verified.
+                </p>
+
+            </div>
+
+
+            <div class="notification">
+
+                <strong>
+                    🔎 Application under review
+                </strong>
+
+                <p>
+                    Your industrial approval application is currently under department review.
+                </p>
+
+            </div>
+
+
+            <div class="notification">
+
+                <strong>
+                    ⚠️ Compliance action required
+                </strong>
+
+                <p>
+                    Please review the pending environmental compliance requirement.
+                </p>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+</body>
+</html>
