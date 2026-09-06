@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Verify Documents - Industrial Approvals</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="logo">
+            🏭 <span>Industrial Approval Portal</span>
+        </div>
+
+        <div class="nav-right">
+            <span>Authority Panel</span>
+            <button onclick="logout()">Logout</button>
+        </div>
+    </header>
+
+
+    <!-- Main Container -->
+    <main class="container">
+
+        <!-- Page Heading -->
+        <div class="page-header">
+            <div>
+                <h1>Verify Documents</h1>
+                <p>Review and verify documents submitted by the applicant.</p>
+            </div>
+
+            <a href="review-application.html" class="back-btn">
+                ← Back to Application
+            </a>
+        </div>
+
+
+        <!-- Application Information -->
+        <section class="card">
+
+            <h2>Application Details</h2>
+
+            <div class="details-grid">
+
+                <div>
+                    <label>Application ID</label>
+                    <p>IND-2026-00124</p>
+                </div>
+
+                <div>
+                    <label>Applicant Name</label>
+                    <p>ABC Manufacturing Pvt. Ltd.</p>
+                </div>
+
+                <div>
+                    <label>Industry Type</label>
+                    <p>Manufacturing</p>
+                </div>
+
+                <div>
+                    <label>Application Date</label>
+                    <p>06 September 2026</p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Documents -->
+        <section class="card">
+
+            <h2>Submitted Documents</h2>
+
+            <p class="section-description">
+                Check each document carefully and select the appropriate verification status.
+            </p>
+
+
+            <!-- Document 1 -->
+            <div class="document">
+
+                <div class="document-info">
+                    <div class="document-icon">📄</div>
+
+                    <div>
+                        <h3>Identity Proof</h3>
+                        <p>Applicant identity verification document</p>
+                        <span class="file-name">identity_proof.pdf</span>
+                    </div>
+                </div>
+
+                <div class="document-actions">
+
+                    <button class="view-btn" onclick="viewDocument('identity_proof.pdf')">
+                        👁 View
+                    </button>
+
+                    <select id="doc1">
+                        <option value="pending">Pending</option>
+                        <option value="verified">Verified</option>
+                        <option value="rejected">Rejected</option>
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <!-- Document 2 -->
+            <div class="document">
+
+                <div class="document-info">
+                    <div class="document-icon">📑</div>
+
+                    <div>
+                        <h3>Land Ownership Document</h3>
+                        <p>Proof of ownership or legal possession of industrial land</p>
+                        <span class="file-name">land_document.pdf</span>
+                    </div>
+                </div>
+
+                <div class="document-actions">
+
+                    <button class="view-btn" onclick="viewDocument('land_document.pdf')">
+                        👁 View
+                    </button>
+
+                    <select id="doc2">
+                        <option value="pending">Pending</option>
+                        <option value="verified">Verified</option>
+                        <option value="rejected">Rejected</option>
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <!-- Document 3 -->
+            <div class="document">
+
+                <div class="document-info">
+                    <div class="document-icon">🏢</div>
+
+                    <div>
+                        <h3>Company Registration Certificate</h3>
+                        <p>Certificate of registration of the industrial entity</p>
+                        <span class="file-name">company_registration.pdf</span>
+                    </div>
+                </div>
+
+                <div class="document-actions">
+
+                    <button class="view-btn" onclick="viewDocument('company_registration.pdf')">
+                        👁 View
+                    </button>
+
+                    <select id="doc3">
+                        <option value="pending">Pending</option>
+                        <option value="verified">Verified</option>
+                        <option value="rejected">Rejected</option>
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <!-- Document 4 -->
+            <div class="document">
+
+                <div class="document-info">
+                    <div class="document-icon">🌱</div>
+
+                    <div>
+                        <h3>Environmental Clearance</h3>
+                        <p>Environmental compliance and clearance document</p>
+                        <span class="file-name">environment_clearance.pdf</span>
+                    </div>
+                </div>
+
+                <div class="document-actions">
+
+                    <button class="view-btn" onclick="viewDocument('environment_clearance.pdf')">
+                        👁 View
+                    </button>
+
+                    <select id="doc4">
+                        <option value="pending">Pending</option>
+                        <option value="verified">Verified</option>
+                        <option value="rejected">Rejected</option>
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <!-- Document 5 -->
+            <div class="document">
+
+                <div class="document-info">
+                    <div class="document-icon">💰</div>
+
+                    <div>
+                        <h3>Financial Documents</h3>
+                        <p>Financial information required for approval</p>
+                        <span class="file-name">financial_documents.pdf</span>
+                    </div>
+                </div>
+
+                <div class="document-actions">
+
+                    <button class="view-btn" onclick="viewDocument('financial_documents.pdf')">
+                        👁 View
+                    </button>
+
+                    <select id="doc5">
+                        <option value="pending">Pending</option>
+                        <option value="verified">Verified</option>
+                        <option value="rejected">Rejected</option>
+                    </select>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Verification Summary -->
+        <section class="card">
+
+            <h2>Verification Summary</h2>
+
+            <div class="summary-grid">
+
+                <div class="summary-box">
+                    <span>Total Documents</span>
+                    <strong>5</strong>
+                </div>
+
+                <div class="summary-box verified-box">
+                    <span>Verified</span>
+                    <strong id="verifiedCount">0</strong>
+                </div>
+
+                <div class="summary-box rejected-box">
+                    <span>Rejected</span>
+                    <strong id="rejectedCount">0</strong>
+                </div>
+
+                <div class="summary-box pending-box">
+                    <span>Pending</span>
+                    <strong id="pendingCount">5</strong>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Remarks -->
+        <section class="card">
+
+            <h2>Authority Remarks</h2>
+
+            <textarea
+                id="remarks"
+                placeholder="Enter remarks regarding document verification..."
+                rows="5"></textarea>
+
+        </section>
+
+
+        <!-- Bottom Actions -->
+        <div class="bottom-actions">
+
+            <button class="secondary-btn" onclick="saveProgress()">
+                Save Progress
+            </button>
+
+            <button class="primary-btn" onclick="completeVerification()">
+                ✓ Complete Verification
+            </button>
+
+        </div>
+
+    </main>
+
+
+    <script src="script.js"></script>
+
+    <script>
+
+        // Update verification counts
+        const selects = document.querySelectorAll("select");
+
+        selects.forEach(select => {
+            select.addEventListener("change", updateCounts);
+        });
+
+        function updateCounts() {
+
+            let verified = 0;
+            let rejected = 0;
+            let pending = 0;
+
+            selects.forEach(select => {
+
+                if (select.value === "verified") {
+                    verified++;
+                }
+                else if (select.value === "rejected") {
+                    rejected++;
+                }
+                else {
+                    pending++;
+                }
+
+            });
+
+            document.getElementById("verifiedCount").textContent = verified;
+            document.getElementById("rejectedCount").textContent = rejected;
+            document.getElementById("pendingCount").textContent = pending;
+        }
+
+
+        // View document
+        function viewDocument(fileName) {
+
+            alert(
+                "Document Preview\n\n" +
+                "File: " + fileName +
+                "\n\nIn the final system, the uploaded document will open here."
+            );
+
+        }
+
+
+        // Save progress
+        function saveProgress() {
+
+            alert("Document verification progress saved successfully.");
+
+        }
+
+
+        // Complete verification
+        function completeVerification() {
+
+            let pending = 0;
+
+            selects.forEach(select => {
+
+                if (select.value === "pending") {
+                    pending++;
+                }
+
+            });
+
+            if (pending > 0) {
+
+                alert(
+                    "Please verify or reject all documents before completing verification."
+                );
+
+                return;
+            }
+
+            alert("All documents have been verified. Proceeding to Update Status.");
+
+            window.location.href = "update-status.html";
+
+        }
+
+
+        // Logout
+        function logout() {
+
+            window.location.href = "login.html";
+
+        }
+
+    </script>
+
+</body>
+</html>
