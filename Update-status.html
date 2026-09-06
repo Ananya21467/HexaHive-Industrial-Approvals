@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Update Application Status - Industrial Approvals</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- ================= NAVBAR ================= -->
+
+    <header class="navbar">
+
+        <div class="logo">
+            🏭 <span>Industrial Approval Portal</span>
+        </div>
+
+        <div class="nav-right">
+            <span>Authority Panel</span>
+            <button onclick="logout()">Logout</button>
+        </div>
+
+    </header>
+
+
+    <!-- ================= MAIN CONTENT ================= -->
+
+    <main class="container">
+
+        <!-- Page Heading -->
+
+        <div class="page-header">
+
+            <div>
+                <h1>Update Application Status</h1>
+
+                <p>
+                    Review the verification results and update the application status.
+                </p>
+            </div>
+
+            <a href="verify-documents.html" class="back-btn">
+                ← Back to Documents
+            </a>
+
+        </div>
+
+
+        <!-- ================= APPLICATION DETAILS ================= -->
+
+        <section class="card">
+
+            <h2>Application Details</h2>
+
+            <div class="details-grid">
+
+                <div>
+                    <label>Application ID</label>
+                    <p>IND-2026-00124</p>
+                </div>
+
+                <div>
+                    <label>Applicant</label>
+                    <p>ABC Manufacturing Pvt. Ltd.</p>
+                </div>
+
+                <div>
+                    <label>Industry Type</label>
+                    <p>Manufacturing</p>
+                </div>
+
+                <div>
+                    <label>Application Date</label>
+                    <p>06 September 2026</p>
+                </div>
+
+                <div>
+                    <label>Approval Type</label>
+                    <p>Industrial Establishment Approval</p>
+                </div>
+
+                <div>
+                    <label>Current Status</label>
+
+                    <span class="status pending">
+                        Under Verification
+                    </span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= VERIFICATION SUMMARY ================= -->
+
+        <section class="card">
+
+            <h2>Verification Summary</h2>
+
+            <div class="summary-grid">
+
+                <div class="summary-box">
+
+                    <span>Total Documents</span>
+
+                    <strong>5</strong>
+
+                </div>
+
+
+                <div class="summary-box verified-box">
+
+                    <span>Verified</span>
+
+                    <strong>5</strong>
+
+                </div>
+
+
+                <div class="summary-box rejected-box">
+
+                    <span>Rejected</span>
+
+                    <strong>0</strong>
+
+                </div>
+
+
+                <div class="summary-box pending-box">
+
+                    <span>Pending</span>
+
+                    <strong>0</strong>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= UPDATE STATUS ================= -->
+
+        <section class="card">
+
+            <h2>Change Application Status</h2>
+
+            <p class="section-description">
+                Select the appropriate status after reviewing the application
+                and submitted documents.
+            </p>
+
+
+            <div class="form-group">
+
+                <label for="applicationStatus">
+                    New Application Status
+                </label>
+
+                <select id="applicationStatus">
+
+                    <option value="">
+                        -- Select Status --
+                    </option>
+
+                    <option value="approved">
+                        Approved
+                    </option>
+
+                    <option value="rejected">
+                        Rejected
+                    </option>
+
+                    <option value="clarification">
+                        Clarification Required
+                    </option>
+
+                    <option value="additional_documents">
+                        Additional Documents Required
+                    </option>
+
+                    <option value="under_review">
+                        Under Further Review
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- ================= REMARKS ================= -->
+
+            <div class="form-group">
+
+                <label for="remarks">
+                    Authority Remarks
+                </label>
+
+                <textarea
+                    id="remarks"
+                    rows="6"
+                    placeholder="Enter remarks or reason for the selected status..."
+                ></textarea>
+
+            </div>
+
+
+            <!-- ================= NOTIFICATION ================= -->
+
+            <div class="notification-option">
+
+                <input
+                    type="checkbox"
+                    id="notifyApplicant"
+                    checked
+                >
+
+                <label for="notifyApplicant">
+                    Notify applicant about the status update
+                </label>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= STATUS PREVIEW ================= -->
+
+        <section class="card">
+
+            <h2>Status Preview</h2>
+
+            <div class="status-preview">
+
+                <div>
+
+                    <span>Application</span>
+
+                    <strong>
+                        IND-2026-00124
+                    </strong>
+
+                </div>
+
+
+                <div>
+
+                    <span>New Status</span>
+
+                    <strong id="statusPreview">
+                        Not Selected
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= ACTION BUTTONS ================= -->
+
+        <div class="bottom-actions">
+
+            <button
+                class="secondary-btn"
+                onclick="cancelUpdate()"
+            >
+                Cancel
+            </button>
+
+
+            <button
+                class="primary-btn"
+                onclick="updateStatus()"
+            >
+                ✓ Update Application Status
+            </button>
+
+        </div>
+
+    </main>
+
+
+    <!-- ================= JAVASCRIPT ================= -->
+
+    <script src="script.js"></script>
+
+    <script>
+
+        // Status preview
+
+        const statusSelect =
+            document.getElementById("applicationStatus");
+
+        const statusPreview =
+            document.getElementById("statusPreview");
+
+
+        statusSelect.addEventListener("change", function () {
+
+            if (this.value === "") {
+
+                statusPreview.textContent = "Not Selected";
+
+            }
+
+            else {
+
+                statusPreview.textContent =
+                    this.options[this.selectedIndex].text;
+
+            }
+
+        });
+
+
+        // Update application status
+
+        function updateStatus() {
+
+            const status =
+                document.getElementById("applicationStatus").value;
+
+            const remarks =
+                document.getElementById("remarks").value.trim();
+
+            const notify =
+                document.getElementById("notifyApplicant").checked;
+
+
+            // Check status
+
+            if (status === "") {
+
+                alert("Please select an application status.");
+
+                return;
+            }
+
+
+            // Require remarks for rejection/clarification
+
+            if (
+                (status === "rejected" ||
+                status === "clarification" ||
+                status === "additional_documents")
+                &&
+                remarks === ""
+            ) {
+
+                alert(
+                    "Please enter remarks for the selected status."
+                );
+
+                return;
+            }
+
+
+            // Confirmation
+
+            const selectedStatus =
+                statusSelect.options[
+                    statusSelect.selectedIndex
+                ].text;
+
+
+            const confirmation =
+                confirm(
+                    "Are you sure you want to update this application to '" +
+                    selectedStatus +
+                    "'?"
+                );
+
+
+            if (!confirmation) {
+
+                return;
+
+            }
+
+
+            // Demo success message
+
+            if (notify) {
+
+                alert(
+                    "Application status updated successfully!\n\n" +
+                    "Status: " + selectedStatus +
+                    "\nApplicant notification: Sent"
+                );
+
+            }
+
+            else {
+
+                alert(
+                    "Application status updated successfully!\n\n" +
+                    "Status: " + selectedStatus
+                );
+
+            }
+
+
+            // Go back to authority applications
+
+            window.location.href =
+                "applications.html";
+
+        }
+
+
+        // Cancel
+
+        function cancelUpdate() {
+
+            window.location.href =
+                "applications.html";
+
+        }
+
+
+        // Logout
+
+        function logout() {
+
+            window.location.href =
+                "login.html";
+
+        }
+
+    </script>
+
+</body>
+</html>
