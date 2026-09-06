@@ -1,0 +1,1022 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Documents | HexaHive</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f4f7fb;
+            color: #1e293b;
+        }
+
+        /* NAVBAR */
+
+        .navbar {
+            background: #0f3d5e;
+            color: white;
+            padding: 18px 40px;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .back-btn {
+            background: white;
+            color: #0f3d5e;
+
+            padding: 9px 18px;
+            border-radius: 6px;
+
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        /* MAIN */
+
+        .container {
+            width: 90%;
+            max-width: 1050px;
+
+            margin: 35px auto;
+        }
+
+        .page-title {
+            color: #0f3d5e;
+            font-size: 30px;
+
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            color: #64748b;
+            margin-bottom: 25px;
+        }
+
+        /* PROGRESS */
+
+        .progress-card {
+            background: white;
+
+            padding: 20px;
+            border-radius: 10px;
+
+            margin-bottom: 25px;
+
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+        }
+
+        .progress {
+            display: flex;
+            justify-content: space-between;
+
+            margin-top: 18px;
+        }
+
+        .step {
+            text-align: center;
+            flex: 1;
+        }
+
+        .circle {
+            width: 36px;
+            height: 36px;
+
+            background: #0f3d5e;
+            color: white;
+
+            border-radius: 50%;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            margin: auto;
+
+            font-weight: bold;
+        }
+
+        .step p {
+            font-size: 13px;
+            margin-top: 8px;
+        }
+
+        /* SMART BOX */
+
+        .smart-box {
+            background: #eef6ff;
+
+            border-left: 5px solid #0f3d5e;
+
+            padding: 20px;
+
+            border-radius: 7px;
+
+            margin-bottom: 25px;
+
+            line-height: 1.6;
+        }
+
+        .smart-box h3 {
+            color: #0f3d5e;
+            margin-bottom: 7px;
+        }
+
+        /* DOCUMENT CARD */
+
+        .document-card {
+            background: white;
+
+            padding: 25px;
+
+            border-radius: 10px;
+
+            margin-bottom: 20px;
+
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+        }
+
+        .document-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            margin-bottom: 15px;
+        }
+
+        .document-header h2 {
+            color: #0f3d5e;
+            font-size: 20px;
+        }
+
+        .required {
+            color: #dc2626;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        .description {
+            color: #64748b;
+            font-size: 14px;
+
+            margin-bottom: 15px;
+        }
+
+        /* UPLOAD AREA */
+
+        .upload-area {
+            border: 2px dashed #cbd5e1;
+
+            padding: 25px;
+
+            text-align: center;
+
+            border-radius: 8px;
+
+            background: #f8fafc;
+
+            cursor: pointer;
+        }
+
+        .upload-area:hover {
+            border-color: #0f3d5e;
+            background: #f1f7fc;
+        }
+
+        .upload-icon {
+            font-size: 30px;
+            margin-bottom: 8px;
+        }
+
+        .upload-area p {
+            margin-bottom: 10px;
+            color: #475569;
+        }
+
+        .upload-area small {
+            color: #94a3b8;
+        }
+
+        input[type="file"] {
+            margin-top: 12px;
+        }
+
+        /* STATUS */
+
+        .status {
+            display: none;
+
+            margin-top: 15px;
+
+            padding: 10px;
+
+            border-radius: 6px;
+
+            background: #ecfdf5;
+            color: #047857;
+
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        /* DOCUMENT LIST */
+
+        .document-list {
+            margin-top: 15px;
+        }
+
+        .document-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            padding: 13px;
+
+            background: #f8fafc;
+
+            border: 1px solid #e2e8f0;
+
+            border-radius: 6px;
+
+            margin-bottom: 10px;
+        }
+
+        .verified {
+            color: #059669;
+            font-weight: bold;
+        }
+
+        .pending {
+            color: #d97706;
+            font-weight: bold;
+        }
+
+        /* CHECKLIST */
+
+        .checklist {
+            background: white;
+
+            padding: 25px;
+
+            border-radius: 10px;
+
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+
+            margin-bottom: 25px;
+        }
+
+        .checklist h2 {
+            color: #0f3d5e;
+
+            margin-bottom: 18px;
+        }
+
+        .check-item {
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+            padding: 12px 0;
+
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .check-item:last-child {
+            border-bottom: none;
+        }
+
+        .check {
+            color: #059669;
+
+            font-size: 18px;
+        }
+
+        /* BUTTONS */
+
+        .buttons {
+            display: flex;
+
+            justify-content: space-between;
+
+            margin: 30px 0 50px;
+        }
+
+        .btn {
+            border: none;
+
+            padding: 13px 25px;
+
+            border-radius: 6px;
+
+            font-size: 15px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+        }
+
+        .previous {
+            background: #e2e8f0;
+            color: #334155;
+        }
+
+        .continue {
+            background: #0f3d5e;
+            color: white;
+        }
+
+        .continue:hover {
+            background: #092f48;
+        }
+
+        /* RESPONSIVE */
+
+        @media(max-width: 700px) {
+
+            .navbar {
+                padding: 15px 20px;
+            }
+
+            .container {
+                width: 95%;
+            }
+
+            .document-header {
+                flex-direction: column;
+
+                align-items: flex-start;
+
+                gap: 5px;
+            }
+
+            .progress {
+                gap: 5px;
+            }
+
+            .step p {
+                font-size: 11px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- NAVBAR -->
+
+    <div class="navbar">
+
+        <div class="logo">
+            HexaHive
+        </div>
+
+        <a href="applicant-dashboard.html" class="back-btn">
+            ← Dashboard
+        </a>
+
+    </div>
+
+
+    <!-- MAIN -->
+
+    <div class="container">
+
+
+        <h1 class="page-title">
+            Required Documents
+        </h1>
+
+        <p class="subtitle">
+            Upload the documents required for processing your industrial approvals.
+        </p>
+
+
+        <!-- PROGRESS -->
+
+        <div class="progress-card">
+
+            <strong>
+                Application Progress
+            </strong>
+
+            <div class="progress">
+
+                <div class="step">
+
+                    <div class="circle">
+                        ✓
+                    </div>
+
+                    <p>
+                        Project Details
+                    </p>
+
+                </div>
+
+
+                <div class="step">
+
+                    <div class="circle">
+                        ✓
+                    </div>
+
+                    <p>
+                        Application Form
+                    </p>
+
+                </div>
+
+
+                <div class="step">
+
+                    <div class="circle">
+                        3
+                    </div>
+
+                    <p>
+                        Documents
+                    </p>
+
+                </div>
+
+
+                <div class="step">
+
+                    <div class="circle">
+                        4
+                    </div>
+
+                    <p>
+                        Submit
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- SMART ASSISTANCE -->
+
+        <div class="smart-box">
+
+            <h3>
+                🤖 HexaHive Smart Document Assistance
+            </h3>
+
+            <p>
+                Based on your selected industry and approval requirements,
+                HexaHive identifies the documents needed for your application.
+                Upload all mandatory documents to avoid delays in the approval process.
+            </p>
+
+        </div>
+
+
+        <!-- DOCUMENT 1 -->
+
+        <div class="document-card">
+
+            <div class="document-header">
+
+                <h2>
+                    📄 Company Registration Certificate
+                </h2>
+
+                <span class="required">
+                    REQUIRED
+                </span>
+
+            </div>
+
+            <p class="description">
+                Upload your company or business registration certificate.
+            </p>
+
+
+            <div class="upload-area">
+
+                <div class="upload-icon">
+                    📁
+                </div>
+
+                <p>
+                    Click to select your document
+                </p>
+
+                <small>
+                    PDF, JPG or PNG | Maximum size: 5 MB
+                </small>
+
+                <br>
+
+                <input
+                    type="file"
+                    accept=".pdf,.jpg,.jpeg,.png"
+                    onchange="showStatus(this, 'status1')">
+
+            </div>
+
+
+            <div id="status1" class="status">
+                ✓ Document uploaded successfully
+            </div>
+
+        </div>
+
+
+        <!-- DOCUMENT 2 -->
+
+        <div class="document-card">
+
+            <div class="document-header">
+
+                <h2>
+                    📄 Land Ownership / Lease Document
+                </h2>
+
+                <span class="required">
+                    REQUIRED
+                </span>
+
+            </div>
+
+            <p class="description">
+                Upload proof of ownership or valid lease agreement for the industrial land.
+            </p>
+
+
+            <div class="upload-area">
+
+                <div class="upload-icon">
+                    📁
+                </div>
+
+                <p>
+                    Click to select your document
+                </p>
+
+                <small>
+                    PDF, JPG or PNG | Maximum size: 5 MB
+                </small>
+
+                <br>
+
+                <input
+                    type="file"
+                    accept=".pdf,.jpg,.jpeg,.png"
+                    onchange="showStatus(this, 'status2')">
+
+            </div>
+
+
+            <div id="status2" class="status">
+                ✓ Document uploaded successfully
+            </div>
+
+        </div>
+
+
+        <!-- DOCUMENT 3 -->
+
+        <div class="document-card">
+
+            <div class="document-header">
+
+                <h2>
+                    📄 Project Report / DPR
+                </h2>
+
+                <span class="required">
+                    REQUIRED
+                </span>
+
+            </div>
+
+            <p class="description">
+                Upload the Detailed Project Report containing project,
+                investment, production and operational information.
+            </p>
+
+
+            <div class="upload-area">
+
+                <div class="upload-icon">
+                    📁
+                </div>
+
+                <p>
+                    Click to select your document
+                </p>
+
+                <small>
+                    PDF, JPG or PNG | Maximum size: 5 MB
+                </small>
+
+                <br>
+
+                <input
+                    type="file"
+                    accept=".pdf,.jpg,.jpeg,.png"
+                    onchange="showStatus(this, 'status3')">
+
+            </div>
+
+
+            <div id="status3" class="status">
+                ✓ Document uploaded successfully
+            </div>
+
+        </div>
+
+
+        <!-- DOCUMENT 4 -->
+
+        <div class="document-card">
+
+            <div class="document-header">
+
+                <h2>
+                    📄 Environmental / Pollution Documents
+                </h2>
+
+                <span class="required">
+                    REQUIRED
+                </span>
+
+            </div>
+
+            <p class="description">
+                Upload applicable environmental reports, pollution control
+                documents or consent-related documents.
+            </p>
+
+
+            <div class="upload-area">
+
+                <div class="upload-icon">
+                    📁
+                </div>
+
+                <p>
+                    Click to select your document
+                </p>
+
+                <small>
+                    PDF, JPG or PNG | Maximum size: 5 MB
+                </small>
+
+                <br>
+
+                <input
+                    type="file"
+                    accept=".pdf,.jpg,.jpeg,.png"
+                    onchange="showStatus(this, 'status4')">
+
+            </div>
+
+
+            <div id="status4" class="status">
+                ✓ Document uploaded successfully
+            </div>
+
+        </div>
+
+
+        <!-- DOCUMENT 5 -->
+
+        <div class="document-card">
+
+            <div class="document-header">
+
+                <h2>
+                    📄 Building / Site Plan
+                </h2>
+
+                <span class="required">
+                    REQUIRED
+                </span>
+
+            </div>
+
+            <p class="description">
+                Upload the approved site plan, building plan or layout
+                relevant to the industrial project.
+            </p>
+
+
+            <div class="upload-area">
+
+                <div class="upload-icon">
+                    📁
+                </div>
+
+                <p>
+                    Click to select your document
+                </p>
+
+                <small>
+                    PDF, JPG or PNG | Maximum size: 5 MB
+                </small>
+
+                <br>
+
+                <input
+                    type="file"
+                    accept=".pdf,.jpg,.jpeg,.png"
+                    onchange="showStatus(this, 'status5')">
+
+            </div>
+
+
+            <div id="status5" class="status">
+                ✓ Document uploaded successfully
+            </div>
+
+        </div>
+
+
+        <!-- OPTIONAL DOCUMENT -->
+
+        <div class="document-card">
+
+            <div class="document-header">
+
+                <h2>
+                    📄 Additional Supporting Document
+                </h2>
+
+                <span style="color:#64748b;font-size:13px;font-weight:bold;">
+                    OPTIONAL
+                </span>
+
+            </div>
+
+            <p class="description">
+                Upload any additional document that may support your application.
+            </p>
+
+
+            <div class="upload-area">
+
+                <div class="upload-icon">
+                    📁
+                </div>
+
+                <p>
+                    Click to select your document
+                </p>
+
+                <small>
+                    PDF, JPG or PNG | Maximum size: 5 MB
+                </small>
+
+                <br>
+
+                <input
+                    type="file"
+                    accept=".pdf,.jpg,.jpeg,.png"
+                    onchange="showStatus(this, 'status6')">
+
+            </div>
+
+
+            <div id="status6" class="status">
+                ✓ Document uploaded successfully
+            </div>
+
+        </div>
+
+
+        <!-- CHECKLIST -->
+
+        <div class="checklist">
+
+            <h2>
+                ✅ Document Checklist
+            </h2>
+
+
+            <div class="check-item">
+
+                <span class="check">
+                    ✓
+                </span>
+
+                <span>
+                    Company Registration Certificate
+                </span>
+
+            </div>
+
+
+            <div class="check-item">
+
+                <span class="check">
+                    ✓
+                </span>
+
+                <span>
+                    Land Ownership / Lease Document
+                </span>
+
+            </div>
+
+
+            <div class="check-item">
+
+                <span class="check">
+                    ✓
+                </span>
+
+                <span>
+                    Detailed Project Report
+                </span>
+
+            </div>
+
+
+            <div class="check-item">
+
+                <span class="check">
+                    ✓
+                </span>
+
+                <span>
+                    Environmental / Pollution Documents
+                </span>
+
+            </div>
+
+
+            <div class="check-item">
+
+                <span class="check">
+                    ✓
+                </span>
+
+                <span>
+                    Building / Site Plan
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <!-- BUTTONS -->
+
+        <div class="buttons">
+
+            <button
+                class="btn previous"
+                onclick="goBack()">
+
+                ← Previous
+
+            </button>
+
+
+            <button
+                class="btn continue"
+                onclick="submitDocuments()">
+
+                Submit Application →
+
+            </button>
+
+        </div>
+
+
+    </div>
+
+
+    <script>
+
+
+        /* SHOW UPLOAD STATUS */
+
+        function showStatus(input, statusId) {
+
+            if (input.files.length > 0) {
+
+                const file = input.files[0];
+
+                const maxSize = 5 * 1024 * 1024;
+
+
+                if (file.size > maxSize) {
+
+                    alert(
+                        "File size must be less than 5 MB."
+                    );
+
+                    input.value = "";
+
+                    return;
+                }
+
+
+                document.getElementById(statusId).style.display = "block";
+
+            }
+
+        }
+
+
+        /* GO BACK */
+
+        function goBack() {
+
+            window.location.href = "fill-form.html";
+
+        }
+
+
+        /* SUBMIT APPLICATION */
+
+        function submitDocuments() {
+
+            const requiredFiles = [
+
+                "status1",
+                "status2",
+                "status3",
+                "status4",
+                "status5"
+
+            ];
+
+
+            let allUploaded = true;
+
+
+            requiredFiles.forEach(function(id) {
+
+                const status =
+                    document.getElementById(id);
+
+                if (status.style.display !== "block") {
+
+                    allUploaded = false;
+
+                }
+
+            });
+
+
+            if (!allUploaded) {
+
+                alert(
+                    "Please upload all required documents before submitting."
+                );
+
+                return;
+
+            }
+
+
+            alert(
+                "🎉 Application submitted successfully! Your application is now under review."
+            );
+
+
+            window.location.href =
+                "track-status.html";
+
+        }
+
+    </script>
+
+
+</body>
+
+</html>
+```
